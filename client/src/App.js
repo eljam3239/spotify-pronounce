@@ -21,7 +21,7 @@ function App() {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/spotify/${parsed.type}/${parsed.id}`);
+      const response = await fetch(`https://spotify-pronounce.onrender.com/spotify/${parsed.type}/${parsed.id}`);
       const data = await response.json();
 
       let output;
