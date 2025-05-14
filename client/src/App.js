@@ -52,10 +52,15 @@ function App() {
         backgroundColor: "#F3EFFE", // Slightly lighter lavender
         borderRadius: "20px",
         padding: "2rem",
-        maxWidth: "600px",
+        maxWidth: "700px",
+        height: "auto",
         width: "90%",
         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-        textAlign: "center"
+        textAlign: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        display: "flex",
+        flexDirection: "column",
       }}>
         <h2 style={{ marginBottom: "1.5rem", color: "#856b85" }}>Pronouncify</h2>
         <input
@@ -64,13 +69,15 @@ function App() {
           value={spotifyUrl}
           onChange={(e) => setSpotifyUrl(e.target.value)}
           style={{
+            alignItems: "center",
+            justifyContent: "center",
             width: "100%",
-            height: "3.5rem",
+            height: "4rem",
             padding: "0.75rem",
             marginBottom: "1rem",
             borderRadius: "10px",
             border: "1px solid #ccc",
-            backgroundColor: "#F8F5FF"  // Lighter lavender for input
+            backgroundColor: "#F8F5FF"
           }}
         />
         <button
