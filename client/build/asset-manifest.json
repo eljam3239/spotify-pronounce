@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/spotify-pronounce/static/css/main.e6c13ad2.css",
+    "main.js": "/spotify-pronounce/static/js/main.c0b03bd8.js",
+    "index.html": "/spotify-pronounce/index.html",
+    "main.e6c13ad2.css.map": "/spotify-pronounce/static/css/main.e6c13ad2.css.map",
+    "main.c0b03bd8.js.map": "/spotify-pronounce/static/js/main.c0b03bd8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.c0b03bd8.js"
+  ]
+}
