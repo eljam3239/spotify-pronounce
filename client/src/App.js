@@ -46,11 +46,10 @@ function App() {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: "#E6E6FA"  // Lavender background
+      backgroundColor: "#E6E6FA"  
     }}>
       <div style={{
-        backgroundColor: "#F3EFFE", // Slightly lighter lavender
-        borderRadius: "20px",
+        backgroundColor: "#F3EFFE", 
         padding: "2rem",
         maxWidth: "700px",
         height: "auto",
@@ -95,11 +94,39 @@ function App() {
         >
           {loading ? "Loading..." : "Get Pronunciation Phrase"}
         </button>
-        {result && <p style={{
-          marginTop: "1.5rem",
-          fontFamily: "monospace",
-          whiteSpace: "pre-wrap"
-        }}>{result}</p>}
+        {result && (
+  <>
+    <p style={{
+      marginTop: "1.5rem",
+      fontFamily: "monospace",
+      whiteSpace: "pre-wrap"
+    }}>{result}</p>
+
+    <a
+      href={`https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(
+        result.replace(/^How to pronounce ['"](.+?)['"] by (.+)/, "$1 by $2").replace(/^How to pronounce ['"](.+?)['"]$/, "$1")
+      )}&op=translate`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        marginTop: "1rem",
+        display: "inline-block",
+        backgroundColor: "#C8A2C8",
+        color: "white",
+        padding: "0.5rem 1rem",
+        borderRadius: "10px",
+        textDecoration: "none",
+        fontWeight: "bold",
+        transition: "background-color 0.3s"
+      }}
+      onMouseEnter={(e) => e.target.style.backgroundColor = "#a77aa7"}
+      onMouseLeave={(e) => e.target.style.backgroundColor = "#C8A2C8"}
+    >
+      Hear it on Google Translate
+    </a>
+  </>
+)}
+
       </div>
       <footer style={{
   marginTop: "2rem",
