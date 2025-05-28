@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/spotify-pronounce/static/css/main.e6c13ad2.css",
-    "main.js": "/spotify-pronounce/static/js/main.78679683.js",
+    "main.js": "/spotify-pronounce/static/js/main.edd3f61a.js",
     "index.html": "/spotify-pronounce/index.html",
     "main.e6c13ad2.css.map": "/spotify-pronounce/static/css/main.e6c13ad2.css.map",
-    "main.78679683.js.map": "/spotify-pronounce/static/js/main.78679683.js.map"
+    "main.edd3f61a.js.map": "/spotify-pronounce/static/js/main.edd3f61a.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.78679683.js"
+    "static/js/main.edd3f61a.js"
   ]
 }
