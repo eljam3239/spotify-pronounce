@@ -5,6 +5,19 @@ function App() {
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const buttonStyle = {
+    padding: "0.75rem 1.5rem",
+    borderRadius: "10px",
+    border: "none",
+    backgroundColor: "#C8A2C8",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+    textDecoration: "none",
+    display: "inline-block",
+    transition: "background-color 0.3s"
+  };
+
   const extractIdAndType = (url) => {
     const regex = /open\.spotify\.com\/(track|artist)\/([a-zA-Z0-9]+)/;
     const match = url.match(regex);
@@ -39,6 +52,19 @@ function App() {
     setLoading(false);
   };
 
+  const generateGoogleTranslateUrl = (text) => {
+    const processedText = text
+      .replace(/^How to pronounce ['"](.+?)['"] by (.+)/, "$1 by $2")
+      .replace(/^How to pronounce ['"](.+?)['"]$/, "$1");
+    return `https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(processedText)}&op=translate`;
+  };
+
+  const resetApp = () => {
+    setSpotifyUrl("");
+    setResult("");
+    setLoading(false);
+  };
+
   return (
     <div style={{
       minHeight: "100vh",
@@ -46,10 +72,10 @@ function App() {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: "#E6E6FA"  
+      backgroundColor: "#E6E6FA"
     }}>
       <div style={{
-        backgroundColor: "#F3EFFE", 
+        backgroundColor: "#F3EFFE",
         padding: "2rem",
         maxWidth: "700px",
         height: "auto",
@@ -61,7 +87,20 @@ function App() {
         display: "flex",
         flexDirection: "column",
       }}>
-        <h2 style={{ marginBottom: "1.5rem", color: "#856b85" }}>Pronouncify</h2>
+        <h2
+          style={{
+            marginBottom: "1.5rem",
+            color: "#856b85",
+            cursor: "pointer",
+            transition: "color 0.3s"
+          }}
+          onClick={resetApp}
+          onMouseEnter={(e) => e.target.style.color = "#a77aa7"}
+          onMouseLeave={(e) => e.target.style.color = "#856b85"}
+        >
+          Pronouncify
+        </h2>
+
         <input
           type="text"
           placeholder="Paste Spotify track or artist link here"
@@ -82,70 +121,54 @@ function App() {
         <button
           onClick={fetchSpotifyData}
           disabled={loading}
-          style={{
-            padding: "0.75rem 1.5rem",
-            borderRadius: "10px",
-            border: "none",
-            backgroundColor: "#C8A2C8",
-            color: "white",
-            cursor: "pointer",
-            fontWeight: "bold"
-          }}
+          style={buttonStyle}
+          onMouseEnter={(e) => e.target.style.backgroundColor = "#a77aa7"}
+          onMouseLeave={(e) => e.target.style.backgroundColor = "#C8A2C8"}
         >
           {loading ? "Loading..." : "Get Pronunciation Phrase"}
         </button>
+
         {result && (
-  <>
-    <p style={{
-      marginTop: "1.5rem",
-      fontFamily: "monospace",
-      whiteSpace: "pre-wrap"
-    }}>{result}</p>
+          <>
+            <a
+              href={generateGoogleTranslateUrl(result)}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                marginTop: "1.5rem",
+                fontFamily: "monospace",
+                whiteSpace: "pre-wrap",
+                color: "#333",
+                textDecoration: "underline",
+                fontSize: "1.1rem"
+              }}
+            >
+              {result}
+            </a>
 
-    <a
-      href={`https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(
-        result.replace(/^How to pronounce ['"](.+?)['"] by (.+)/, "$1 by $2").replace(/^How to pronounce ['"](.+?)['"]$/, "$1")
-      )}&op=translate`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        marginTop: "1rem",
-        display: "inline-block",
-        backgroundColor: "#C8A2C8",
-        color: "white",
-        padding: "0.5rem 1rem",
-        borderRadius: "10px",
-        textDecoration: "none",
-        fontWeight: "bold",
-        transition: "background-color 0.3s"
-      }}
-      onMouseEnter={(e) => e.target.style.backgroundColor = "#a77aa7"}
-      onMouseLeave={(e) => e.target.style.backgroundColor = "#C8A2C8"}
-    >
-      Hear it on Google Translate
-    </a>
-  </>
-)}
-
+            
+          </>
+        )}
       </div>
+
       <footer style={{
-  marginTop: "2rem",
-  fontSize: "0.9rem",
-  color: "#555"
-}}>
-  <a
-    href="https://github.com/eljam3239"
-    style={{
-      color: "#555",
-      textDecoration: "none",
-      transition: "color 0.3s ease"
-    }}
-    onMouseEnter={(e) => e.target.style.color = "#B39DDB"}
-    onMouseLeave={(e) => e.target.style.color = "#555"}
-  >
-    by Eli James
-  </a>
-</footer>
+        marginTop: "2rem",
+        fontSize: "0.9rem",
+        color: "#555"
+      }}>
+        <a
+          href="https://github.com/eljam3239"
+          style={{
+            color: "#555",
+            textDecoration: "none",
+            transition: "color 0.3s ease"
+          }}
+          onMouseEnter={(e) => e.target.style.color = "#B39DDB"}
+          onMouseLeave={(e) => e.target.style.color = "#555"}
+        >
+          by Eli James
+        </a>
+      </footer>
     </div>
   );
 }
